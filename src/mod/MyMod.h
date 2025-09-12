@@ -29,5 +29,5 @@ public:
 private:
     ll::mod::NativeMod& mSelf;
 };
-
+void hook();
 } // namespace my_mod

@@ -1,10 +1,10 @@
 {
     "format_version": 3,
     "format_uuid": "289f771f-2c9a-4d73-9f3f-8492495a924d",
-    "tooth": "example.com/my-user/my-mod",
-    "version": "0.0.0",
+    "tooth": "github.com/lwenk/PlandProjectileFix",
+    "version": "0.1.0",
     "info": {
-        "name": "My Mod",
+        "name": "PlandProjectileFix",
         "description": "Description of my mod",
         "tags": [
             "platform:levilamina",
@@ -17,19 +17,20 @@
             "label": "",
             "platform": "win-x64",
             "dependencies": {
-                "github.com/LiteLDev/LeviLamina": "Required LeviLamina version range"
+                "github.com/LiteLDev/LeviLamina": "1.4.*",
+                "github.com/engsr6982/PLand": "0.13.*"
             },
             "assets": [
                 {
                     "type": "zip",
                     "urls": [
-                        "https://example.com/my-mod/assets.zip"
+                        "https://{{tooth}}/releases/download/v{{version}}/PlandProjectileFix-windows-x64.zip"
                     ],
                     "placements": [
                         {
                             "type": "dir",
-                            "src": "my-mod/",
-                            "dest": "plugins/my-mod/"
+                            "src": "PlandProjectileFix/",
+                            "dest": "plugins/PlandProjectileFix/"
                         }
                     ]
                 }
