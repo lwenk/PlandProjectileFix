@@ -12,7 +12,7 @@ else
     add_requires("levilamina", {configs = {target_type = "client"}})
 end
 add_requires("pland 0.13.0")
-add_requires("levibuildscript")
+add_requires("levibuildscript 0.5.0")
 
 if not has_config("vs_runtime") then
     set_runtimes("MD")

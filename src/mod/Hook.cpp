@@ -40,6 +40,8 @@ LL_TYPE_INSTANCE_HOOK(
         if (!player) return origin(owner, res);
 
         auto land = db->getLandAt(res.mPos, player->getDimensionId());
+        if (land->getPermTable().useFishingHook && owner.hasType(::ActorType::FishingHook)) return origin(owner, res);
+        if (land->getPermTable().allowProjectileCreate) return origin(owner, res);
         if (!PreCheckLandExistsAndPermission(land, player->getUuid().asString())) {
             owner.despawn();
             return;
