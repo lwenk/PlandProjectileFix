@@ -13,7 +13,7 @@
 namespace my_mod {
 using namespace land;
 
-inline bool PreCheckLandExistsAndPermission(SharedLand const& ptr, UUIDs const& uuid = "") {
+inline bool PreCheckLandExistsAndPermission(SharedLand const& ptr, mce::UUID const& uuid = mce::UUID::EMPTY()) {
     if (!ptr ||                                                       // 无领地
         (PLand::getInstance().getLandRegistry()->isOperator(uuid)) || // 管理员
         (ptr->getPermType(uuid) != LandPermType::Guest)               // 主人/成员
@@ -41,9 +41,10 @@ LL_TYPE_INSTANCE_HOOK(
 
         auto land = db->getLandAt(res.mPos, player->getDimensionId());
         if (!land) return origin(owner, res);
-        if (land->getPermTable().useFishingHook && owner.hasType(::ActorType::FishingHook)) return origin(owner, res);
+        if (land->getPermTable().allowFishingRodAndHook && owner.hasType(::ActorType::FishingHook))
+            return origin(owner, res);
         if (land->getPermTable().allowProjectileCreate) return origin(owner, res);
-        if (!PreCheckLandExistsAndPermission(land, player->getUuid().asString())) {
+        if (!PreCheckLandExistsAndPermission(land, player->getUuid())) {
             owner.despawn();
             return;
         }
