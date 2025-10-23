@@ -35,13 +35,13 @@ LL_TYPE_INSTANCE_HOOK(
     auto* db = PLand::getInstance().getLandRegistry();
 
     if ((int)res.mType < 2) {
-        if (owner.hasType(::ActorType::Trident) && res.mType != HitResultType::Entity) return origin(owner, res);
+        if (owner.isType(::ActorType::Trident) && res.mType != HitResultType::Entity) return origin(owner, res);
         auto player = owner.getPlayerOwner();
         if (!player) return origin(owner, res);
 
         auto land = db->getLandAt(res.mPos, player->getDimensionId());
         if (!land) return origin(owner, res);
-        if (land->getPermTable().allowFishingRodAndHook && owner.hasType(::ActorType::FishingHook))
+        if (land->getPermTable().allowFishingRodAndHook && owner.isType(::ActorType::FishingHook))
             return origin(owner, res);
         if (land->getPermTable().allowProjectileCreate) return origin(owner, res);
         if (!PreCheckLandExistsAndPermission(land, player->getUuid())) {
